@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="./CSS/style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="topbar">
+      <div>
+        <h1 class="title">Task Manager</h1>
+        <p class="subtitle">과제, 공부, 운동, 개인 일정을 한 번에 관리해보세요.</p>
+      </div>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="다크모드 전환">
+        🌙
+      </button>
+    </header>
+
+    <section class="summary-card">
+      <div class="summary-row">
+        <div>
+          <p class="summary-label">오늘의 진행률</p>
+          <strong id="progress-text" class="summary-value">0%</strong>
+        </div>
+        <div class="summary-right">
+          <span id="left-count">0개 남음</span>
+          <span id="total-count">총 0개</span>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <form id="todo-form" class="form" autocomplete="off">
+        <label class="sr-only" for="todo-input">할 일 입력</label>
+        <input
+          id="todo-input"
+          class="input"
+          type="text"
+          placeholder="할 일을 입력하세요"
+          maxlength="120"
+          required
+        />
+
+        <label class="sr-only" for="todo-category">카테고리</label>
+        <select id="todo-category" class="select">
+          <option value="공부">공부</option>
+          <option value="운동">운동</option>
+          <option value="개인">개인</option>
+          <option value="프로젝트">프로젝트</option>
+        </select>
+
+        <label class="sr-only" for="todo-priority">중요도</label>
+        <select id="todo-priority" class="select">
+          <option value="high">높음</option>
+          <option value="medium" selected>보통</option>
+          <option value="low">낮음</option>
+        </select>
+
+        <label class="sr-only" for="todo-date">마감일</label>
+        <input id="todo-date" class="input input--date" type="date" />
+
+        <button type="submit" class="btn">추가</button>
+      </form>
+    </section>
+
+    <section class="toolbar">
+      <input
+        id="search-input"
+        class="input toolbar__search"
+        type="text"
+        placeholder="검색어를 입력하세요"
+      />
+
+      <select id="sort-select" class="select toolbar__select">
+        <option value="latest">최신순</option>
+        <option value="oldest">오래된순</option>
+        <option value="priority">중요도순</option>
+        <option value="dueDate">마감일순</option>
+      </select>
+    </section>
+
+    <section class="filter-bar">
+      <div class="filters">
+        <button type="button" data-filter="all" class="chip chip--active">전체</button>
+        <button type="button" data-filter="active" class="chip">진행중</button>
+        <button type="button" data-filter="completed" class="chip">완료</button>
+      </div>
+      <button id="clear-completed" type="button" class="link-btn">완료 삭제</button>
+    </section>
+
+    <ul id="todo-list" class="list" aria-live="polite"></ul>
+
+    <div id="empty-state" class="empty hidden">
+      <p class="empty__title">아직 표시할 일정이 없어요</p>
+      <p class="empty__desc">새 할 일을 추가하거나 검색/필터 조건을 바꿔보세요.</p>
+    </div>
+  </main>
+
+  <script defer src="./JS/app.js"></script>
+</body>
+</html>
